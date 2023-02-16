@@ -7,7 +7,7 @@ import com.ndourcodeur.categorybackendservice.feignclient.ProductFeignClient;
 import com.ndourcodeur.categorybackendservice.payload.Product;
 import com.ndourcodeur.categorybackendservice.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +19,7 @@ import java.util.Map;
 @Service("categoryService")
 @RequiredArgsConstructor
 @Transactional
+@Slf4j
 public class CategoryServiceImpl implements CategoryService {
 
     private final ProductFeignClient productFeignClient;
@@ -41,6 +42,19 @@ public class CategoryServiceImpl implements CategoryService {
                 .orElseThrow( () -> new ResourceNotFoundException("Category not found with id="+idCategory));
         CategoryDto findCategory = mapEntityToDto(category);
         return findCategory;
+    }
+
+    @Override
+    public CategoryDto findCategoryByName(String categoryName) {
+        Category findCategoryName = this.categoryRepository.findCategoryByName(categoryName);
+        CategoryDto dto = mapEntityToDto(findCategoryName);
+        return dto;
+    }
+
+    @Override
+    public boolean existsCategoryByName(String categoryName) {
+        log.info("");
+        return this.categoryRepository.existsCategoryByName(categoryName);
     }
 
     @Override

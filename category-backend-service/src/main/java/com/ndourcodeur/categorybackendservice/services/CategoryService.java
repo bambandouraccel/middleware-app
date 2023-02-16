@@ -9,6 +9,8 @@ import java.util.Map;
 public interface CategoryService {
     List<CategoryDto> findCategories();
     CategoryDto findCategory(Integer idCategory);
+    CategoryDto findCategoryByName(String categoryName);
+    boolean existsCategoryByName(String categoryName);
     CategoryDto addCategory(CategoryDto categoryDto);
     CategoryDto editCategory(Integer idCategory, CategoryDto categoryDto);
     void deleteCategory(Integer idCategory);
