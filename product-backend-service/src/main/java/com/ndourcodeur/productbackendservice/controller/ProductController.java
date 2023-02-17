@@ -28,6 +28,8 @@ public class ProductController {
         }
         list = list.stream()
                 .sorted(Comparator.comparing(ProductDto::getId).reversed())
+                //.filter(x -> x.getName().equalsIgnoreCase(name))
+                .filter(productDto -> productDto.getName().equalsIgnoreCase(productDto.getName()))
                 .collect(Collectors.toList());
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
