@@ -13,7 +13,8 @@ public class CategoryBackendServiceApplication {
 	public static void main(String[] args) {
 
 		SpringApplication.run(CategoryBackendServiceApplication.class, args);
-		System.out.println("Server started...");
+		System.out.println("Server started....");
+		System.out.println("Hello Bamba Ndour !");
 	}
 
 }
